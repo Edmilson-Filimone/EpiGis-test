@@ -1,10 +1,32 @@
-function App() {
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import About from "./pages/About";
+import CreateListing from "./pages/CreateListing";
+import EditListing from "./pages/EditListing";
+import Home from "./pages/Home";
+import Listing from "./pages/Listing";
+import Portfolio from "./pages/Portfolio";
+import SignIn from "./pages/SignIn";
 
+function App() {
   return (
     <>
-    <div className="text-2xl text-center font-semibold bg-slate-100 p-5 rounded-md w-[100vw]">Hello EpiGis</div>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/portfolio" element={<Portfolio />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/sign-in" element={<SignIn />}></Route>
+          <Route path="/create-listing" element={<CreateListing />}></Route>
+          <Route path="/edit-listing/:id" element={<EditListing />}></Route>
+          <Route path="/listing" element={<Listing />}></Route>
+        </Routes>
+      </BrowserRouter>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
