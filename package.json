@@ -1,0 +1,11 @@
+{
+  "name": "epigis",
+  "version": "1.0.0",
+  "description": "EpiGis project - a plataform designed to bring new insights through geospatial analysis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edmilson Filimone",
+  "license": "ISC"
+}
