@@ -12,8 +12,8 @@ import SignIn from "./pages/SignIn";
 function App() {
   return (
     <>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/portfolio" element={<Portfolio />}></Route>
@@ -23,8 +23,8 @@ function App() {
           <Route path="/edit-listing/:id" element={<EditListing />}></Route>
           <Route path="/listing" element={<Listing />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 }
