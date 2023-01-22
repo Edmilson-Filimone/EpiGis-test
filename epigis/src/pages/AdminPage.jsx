@@ -8,7 +8,7 @@ function AdminPage() {
     
     const signOut = ()=>{
         auth.signOut()
-        toast.info("You have been signed out")
+        toast.info("You signed out")
         navigate('/')
     }
 
