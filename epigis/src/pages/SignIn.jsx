@@ -30,7 +30,7 @@ function SignIn() {
       const user = userCredential.user;
 
       if (user) {
-        navigate("/create-listing");
+        navigate("/admin");
       }
     } catch (error) {
       toast.error("Your Email or Password doesn't match");
