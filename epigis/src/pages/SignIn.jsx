@@ -10,6 +10,7 @@ function SignIn() {
   /**Form states*/
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { email, password } = formData;
+  const [loading, setLoading] = useState(false)
 
   /**onChange function*/
   //we use prevStat because we are updating the state through more than one input, so to avoid onChange to override the state with new data whenever the function is called we use prevStat to save and only update the field whose the value changed
@@ -30,6 +31,7 @@ function SignIn() {
       const user = userCredential.user;
 
       if (user) {
+        setLoading(false)
         navigate("/admin");
       }
     } catch (error) {
@@ -40,12 +42,20 @@ function SignIn() {
   /**OnSubmit*/
   const onSubmit = (e)=>{
     e.preventDefault()
+    setLoading(true)
     signIn()
+  }
+
+  if(loading){
+    return (
+      <div className="text-center mx-auto text-2xl font-mono font-semibold">
+        Is Loading
+      </div>)
   }
 
   return (
     <>
-      <div className="w-full mt-10 py-8">
+      <div className="w-full mt-10 py-8 px-4">
         <h3 className="text-center mx-auto text-2xl font-semibold">Sign In</h3>
         <form onSubmit={onSubmit} className="flex flex-col space-y-5 items-center max-w-[500px] w-full mx-auto py-5">
           <div className="w-full flex flex-col space-y-2 justify-start">
