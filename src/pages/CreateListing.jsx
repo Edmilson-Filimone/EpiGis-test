@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { firestore, storage } from "../firebase.config";
 import { toast } from "react-toastify";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import {useNavigate} from "react-router-dom"
 
 function CreateListing() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
-  const [finalData, setFinalData] = useState();
   const [formData, setFormData] = useState({
     name: "The burden of Malaria",
     category: "Epidemiology",
@@ -43,11 +42,8 @@ function CreateListing() {
     return new Promise((resolve, reject) => {
       const fileName = `${image.name}-${uuid()}`;
       const storageRef = ref(storage, fileName);
-      const metadata = {
-        contentType: "image/*",
-      };
 
-      const uploadTask = uploadBytesResumable(storageRef, image, metadata);
+      const uploadTask = uploadBytesResumable(storageRef, image);
       uploadTask.on(
         "state_changed",
         //log progress callback
@@ -118,33 +114,25 @@ function CreateListing() {
       toast.error("Unable to upload profile");
       return;
     });
+      
+     //uploading to firestore
+      delete formData.profile
+      delete formData.images
+      const data = {...formData, profileUrl, imagesUrl, timeStamp:serverTimestamp()}
+      
 
-    // updating formData with the images urls
-    if (imagesUrl && profileUrl) {
-      setFinalData({
-        name,
-        category,
-        author,
-        country,
-        region,
-        province,
-        district,
-        date,
-        description,
-        profileUrl,
-        imagesUrl,
-      });
-
-    //uploading to firestore
-    const collectionRef = collection(firestore, "maps")
-    const docRef = await addDoc(collectionRef, finalData)
-    toast.success("Data was uploaded successfully")
-    navigate(`/listing/${docRef.id}`)
-    }
-
- 
-
+      const collectionRef = collection(firestore, "maps")
+      const docRef = await addDoc(collectionRef, data)
+      toast.success("Data was uploaded successfully")
+      navigate(`/listing/${docRef.id}`)
   };
+
+  if(loading){
+    return (
+      <div className="text-center mx-auto text-2xl font-mono font-semibold">
+        Is Loading
+      </div>)
+  }
 
   return (
     <>
