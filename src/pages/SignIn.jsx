@@ -35,6 +35,7 @@ function SignIn() {
         navigate("/admin");
       }
     } catch (error) {
+      setLoading(false)
       toast.error("Your Email or Password doesn't match");
     }
   };
