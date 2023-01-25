@@ -7,7 +7,8 @@ import { collection, getDocs, query } from "firebase/firestore";
 
 function AdminPage() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+  const [done, setDone] = useState(false)
 
   const signOut = () => {
     auth.signOut();
@@ -24,27 +25,24 @@ function AdminPage() {
       if (!querySnap.empty) {
         querySnap.forEach((doc) => {
           listDoc.push({ id: doc.id, data: doc.data() });
+          setDone(true)
+          setData(listDoc); //o estado deve ser actualizado dentro da funcao async, se colocar esse trecho fora, ele vai actualizar o estado primeiro antes de rodar a funcao - problema do assincronismo
         });
       }
     }
     fetchData();
-    setData(listDoc);
   }, []);
-
-  console.log(data);
 
   return (
     <div className="w-full mt-5">
       <h3 className="text-2xl text-center mt-5 mx-auto font-semibold">
         Administrator Page
       </h3>
-      {data && (
-        <div className="mx-auto mt-5 md:px-24 px-5 text-center grid gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-          {data.map(({ id, dados }) => (
-            <CardListing key={id} id={id} data={dados} />
-          ))}
-        </div>
-      )}
+      <div className="mx-auto mt-5 lg:px-10 px-5 text-center flex flex-col md:flex-row md:flex-wrap justify-center gap-4">
+            {done && data.map(({id, data}) => (
+              <CardListing key={id} id={id} data={data}/>
+            ))}
+      </div>
       <button
         onClick={signOut}
         className="block mt-10 mx-auto py-2 px-3 shadow-md rounded-md bg-red-500 text-white text-center font-medium transition ease-in-out duration-100 hover:bg-red-600"
