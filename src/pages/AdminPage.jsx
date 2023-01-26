@@ -3,13 +3,16 @@ import { toast } from "react-toastify";
 import { auth, firestore, storage } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import CardListing from "../components/CardListing";
-import { collection, deleteDoc, doc, getDoc, getDocs} from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, limit, query} from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
+import Loading from "../components/Loading"
+import {HiOutlineLogout} from "react-icons/hi"
 
 function AdminPage() {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [done, setDone] = useState(false)
+  const [queryLimit, setQueryLimit] = useState(3)
 
   const signOut = () => {
     auth.signOut();
@@ -22,7 +25,8 @@ function AdminPage() {
     let listDoc = [];
     async function fetchData() {
       const collectionRef = collection(firestore, "maps");
-      const querySnap = await getDocs(collectionRef);
+      const q = query(collectionRef, limit(queryLimit))
+      const querySnap = await getDocs(q);
       if (!querySnap.empty) {
         querySnap.forEach((doc) => {
           listDoc.push({ id: doc.id, data: doc.data() });
@@ -32,7 +36,7 @@ function AdminPage() {
       }
     }
     fetchData();
-  }, []);
+  }, [queryLimit]);
 
   /**Delete Data from firestore and cloud storage*/
   async function removeDoc(id) {
@@ -72,9 +76,14 @@ function AdminPage() {
     navigate(`/edit-listing/${id}`)
   }
 
+
+  if(!done){
+    return <Loading />
+  }
+
   return (
     <div className="w-full mt-5">
-      <h3 className="text-2xl text-center mt-5 mx-auto font-semibold">
+      <h3 className="text-2xl text-center my-8 mx-auto font-semibold">
         Administrator Page
       </h3>
       <div className="mx-auto mt-5 lg:px-10 px-5 text-center flex flex-col md:flex-row md:flex-wrap justify-center gap-4">
@@ -82,11 +91,19 @@ function AdminPage() {
               <CardListing key={id} id={id} data={data} onDelete={removeDoc} onEdit={editDoc}/>
             ))}
       </div>
+      {queryLimit <= data.length && 
+      (<button
+        onClick={()=>{setQueryLimit((prev)=>(prev + 3))}}
+        className="block mt-10 mx-auto py-2 px-3 shadow-md rounded-md bg-blue-400 bg-gradient-to-bl text-white text-center font-medium transition ease-in-out duration-100 hover:bg-blue-500"
+      >
+        Load More
+      </button>)}
       <button
         onClick={signOut}
-        className="block mt-10 mx-auto py-2 px-3 shadow-md rounded-md bg-red-500 text-white text-center font-medium transition ease-in-out duration-100 hover:bg-red-600"
+        title="Log Out?"
+        className="absolute top-4 right-4 mx-auto py-2 px-3 shadow-md rounded-md bg-red-500 text-white text-lg text-center font-bold transition ease-in-out duration-100 hover:bg-red-600"
       >
-        Sign Out
+        < HiOutlineLogout />
       </button>
     </div>
   );

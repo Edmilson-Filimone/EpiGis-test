@@ -1,7 +1,7 @@
 import { BsFillTrashFill, BsPencilFill, BsPersonCircle} from "react-icons/bs";
 import { GoCalendar, GoLocation } from "react-icons/go";
 import { FaLayerGroup } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CardListing({ id, data, onDelete, onEdit }) {
   const navigate = useNavigate()
@@ -9,9 +9,9 @@ function CardListing({ id, data, onDelete, onEdit }) {
     <>
       <div className="w-full md:w-[320px] bg-white shadow-lg overflow-hidden">
         <div className="w-full p-2">
-          <a href={data.profileUrl} target="_blank" title={data.name} className="block w-full h-[250px] max-h-[250px] bg-slate-600 mb-2 border overflow-hidden">
+          <a href={data.profileUrl} target="_blank" title={data.name} className="block w-full h-[250px] max-h-[250px] bg-slate-600 mb-2 border overflow-hidden hover:border-4">
             <img
-              className="w-full h-full transition ease-in-out duration-500 hover:scale-105"
+              className="w-full h-full transition ease-in-out duration-1000 hover:scale-110"
               src={data.profileUrl}
               alt="Image"
               id="image"
