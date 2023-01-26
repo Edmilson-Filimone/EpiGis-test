@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { auth, firestore } from "../firebase.config";
+import { auth, firestore, storage } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import CardListing from "../components/CardListing";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs} from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -33,6 +34,44 @@ function AdminPage() {
     fetchData();
   }, []);
 
+  /**Delete Data from firestore and cloud storage*/
+  async function removeDoc(id) {
+    if(confirm("Delete this document?")){
+      try {
+        // 1. getting the urls images from firestore db
+        const docRef = doc(firestore, 'maps', id)
+        const docSnap = await getDoc(docRef)
+        if(docSnap.exists()){
+          const docData = docSnap.data()
+          const refImages = [docData.profileUrl, ...docData.imagesUrl]
+          
+          //deleting all images from storages
+          //2. use the urls retrieved from firestore db as reference on storage to target the file that we pretend to delete
+          refImages.forEach((reference)=> {
+            const fileRef = ref(storage, reference)
+            deleteObject(fileRef).then(()=>{
+              console.log('Deleting image...')
+            }).catch((error)=> console.log(error))
+          })
+        }
+
+        //deliting from firestore db
+        await deleteDoc(docRef)
+
+        /**Filtiring data*/
+        setData(data.filter((doc)=> doc.id != id))
+        toast.info("Document Deleted") 
+      } catch (error) {
+        toast.error(error)
+      }
+    }
+  }
+
+  /**Edit Doc*/
+ const editDoc = (id) => {
+    navigate(`/edit-listing/${id}`)
+  }
+
   return (
     <div className="w-full mt-5">
       <h3 className="text-2xl text-center mt-5 mx-auto font-semibold">
@@ -40,7 +79,7 @@ function AdminPage() {
       </h3>
       <div className="mx-auto mt-5 lg:px-10 px-5 text-center flex flex-col md:flex-row md:flex-wrap justify-center gap-4">
             {done && data.map(({id, data}) => (
-              <CardListing key={id} id={id} data={data}/>
+              <CardListing key={id} id={id} data={data} onDelete={removeDoc} onEdit={editDoc}/>
             ))}
       </div>
       <button
