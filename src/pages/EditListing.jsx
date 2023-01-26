@@ -26,6 +26,7 @@ function EditListing() {
     district: "",
     date: "",
     description: "",
+    keyword:"",
     profile: "",
     images: "",
   });
@@ -40,6 +41,7 @@ function EditListing() {
     district,
     date,
     description,
+    keyword,
     profile,
     images,
   } = formData;
@@ -59,7 +61,7 @@ function EditListing() {
   /**upload image to fire storage*/
   const uploadImage = async (image) => {
     return new Promise((resolve, reject) => {
-      const fileName = `teste/${image.name}-${uuid()}`;
+      const fileName = `${author}/${category}/${keyword}/${image.name}-${uuid()}`.replace(" ", "_").replace(",", "_");
       const storageRef = ref(storage, fileName);
 
       const uploadTask = uploadBytesResumable(storageRef, image);
@@ -299,6 +301,19 @@ function EditListing() {
               onChange={onChange}
               required
             ></textarea>
+          </div>
+          <div className="w-full flex flex-col space-y-2 justify-start">
+            <label htmlFor="date">Keyword</label>
+            <input
+              className="w-full rounded-md bg-gray-300 border-none"
+              type="text"
+              name="keyword"
+              id="keyword"
+              value={keyword}
+              onChange={onChange}
+              placeholder="Ex: Malaria"
+              required
+            />
           </div>
           <p className="font-medium">You want to update images?</p>
           <div className="w-full flex space-x-3 justify-start">

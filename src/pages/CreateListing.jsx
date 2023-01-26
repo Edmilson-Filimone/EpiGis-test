@@ -1,7 +1,7 @@
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { firestore, storage } from "../firebase.config";
+import { auth, firestore, storage } from "../firebase.config";
 import { toast } from "react-toastify";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import {useNavigate} from "react-router-dom"
@@ -19,6 +19,7 @@ function CreateListing() {
     district: "Matola",
     date: "10/12/2023",
     description: "",
+    keyword:"",
     profile: "",
     images: "",
   });
@@ -33,6 +34,7 @@ function CreateListing() {
     district,
     date,
     description,
+    keyword,
     profile,
     images,
   } = formData;
@@ -40,7 +42,7 @@ function CreateListing() {
   /**upload image to fire storage*/
   const uploadImage = async (image) => {
     return new Promise((resolve, reject) => {
-      const fileName = `teste/${image.name}-${uuid()}`;
+      const fileName = `${author}/${category}/${keyword}/${image.name}-${uuid()}`.replace(" ", "_").replace(",", "_"); //removing blank spaces and comma
       const storageRef = ref(storage, fileName);
 
       const uploadTask = uploadBytesResumable(storageRef, image);
@@ -251,6 +253,19 @@ function CreateListing() {
               onChange={onChange}
               required
             ></textarea>
+          </div>
+          <div className="w-full flex flex-col space-y-2 justify-start">
+            <label htmlFor="date">Keyword</label>
+            <input
+              className="w-full rounded-md bg-gray-300 border-none"
+              type="text"
+              name="keyword"
+              id="keyword"
+              value={keyword}
+              onChange={onChange}
+              placeholder="Ex: Malaria"
+              required
+            />
           </div>
           <div className="w-full flex flex-col space-y-2 justify-start">
             <label htmlFor="profile">Image to display</label>
