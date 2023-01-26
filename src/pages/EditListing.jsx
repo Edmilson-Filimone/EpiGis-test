@@ -1,11 +1,9 @@
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { firestore, storage } from "../firebase.config";
 import { toast } from "react-toastify";
 import {
-  addDoc,
-  collection,
   doc,
   getDoc,
   serverTimestamp,
@@ -61,7 +59,7 @@ function EditListing() {
   /**upload image to fire storage*/
   const uploadImage = async (image) => {
     return new Promise((resolve, reject) => {
-      const fileName = `${image.name}-${uuid()}`;
+      const fileName = `teste/${image.name}-${uuid()}`;
       const storageRef = ref(storage, fileName);
 
       const uploadTask = uploadBytesResumable(storageRef, image);
@@ -124,6 +122,16 @@ function EditListing() {
 
     //conditionally updating images, if updateImages is true we want to update images also
     if (updateImages) {
+
+      //Delete old images on storage to replace with new ones
+      const refImages = [formData?.profileUrl, ...formData?.imagesUrl ]
+      refImages.forEach((reference)=> {
+        const fileRef = ref(storage, reference)
+        deleteObject(fileRef).then(()=>{
+          console.log('Deleting image...')
+        }).catch((error)=> console.log(error))
+      })
+
       //Uploading images
       const imagesUrl = await Promise.all(
         [...images].map((img) => uploadImage(img))

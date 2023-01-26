@@ -40,7 +40,7 @@ function CreateListing() {
   /**upload image to fire storage*/
   const uploadImage = async (image) => {
     return new Promise((resolve, reject) => {
-      const fileName = `${image.name}-${uuid()}`;
+      const fileName = `teste/${image.name}-${uuid()}`;
       const storageRef = ref(storage, fileName);
 
       const uploadTask = uploadBytesResumable(storageRef, image);
