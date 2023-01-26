@@ -5,6 +5,7 @@ import { auth, firestore, storage } from "../firebase.config";
 import { toast } from "react-toastify";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import {useNavigate} from "react-router-dom"
+import Loading from "../components/Loading";
 
 function CreateListing() {
   const navigate = useNavigate()
@@ -130,10 +131,7 @@ function CreateListing() {
   };
 
   if(loading){
-    return (
-      <div className="text-center mx-auto text-2xl font-mono font-semibold">
-        Is Loading
-      </div>)
+    return <Loading />
   }
 
   return (

@@ -1,8 +1,11 @@
 import React from 'react'
+import Loading from '../components/Loading'
 
 function Home() {
   return (
-    <div>Home</div>
+    <main>
+      <Loading />
+    </main>
   )
 }
 

@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth } from "../firebase.config";
+import Loading from "../components/Loading";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -48,10 +49,7 @@ function SignIn() {
   }
 
   if(loading){
-    return (
-      <div className="text-center mx-auto text-2xl font-mono font-semibold">
-        Is Loading
-      </div>)
+    return <Loading /> 
   }
 
   return (

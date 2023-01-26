@@ -10,6 +10,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 
 function EditListing() {
   const params = useParams();
@@ -177,11 +178,7 @@ function EditListing() {
   };
 
   if (loading) {
-    return (
-      <div className="text-center mx-auto text-2xl font-mono font-semibold">
-        Is Loading
-      </div>
-    );
+    return <Loading />
   }
 
   return (
