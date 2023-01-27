@@ -86,7 +86,7 @@ function AdminPage() {
       <h3 className="text-2xl text-center my-8 mx-auto font-semibold">
         Administrator Page
       </h3>
-      <div className="mx-auto mt-5 lg:px-10 px-5 text-center flex flex-col md:flex-row md:flex-wrap justify-center gap-4">
+      <div className="w-full mx-auto mt-5 lg:px-10 px-5 text-center flex flex-col items-center md:flex-row md:flex-wrap justify-center gap-5">
             {done && data.map(({id, data}) => (
               <CardListing key={id} id={id} data={data} onDelete={removeDoc} onEdit={editDoc}/>
             ))}
