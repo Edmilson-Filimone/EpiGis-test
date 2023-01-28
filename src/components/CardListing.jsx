@@ -7,7 +7,7 @@ function CardListing({ id, data, onDelete, onEdit }) {
   const navigate = useNavigate()
   return (
     <>
-      <div className="w-full max-w-[360px] md:w-[360px] bg-white shadow-lg overflow-hidden">
+      <div className="w-full max-w-[360px] md:w-[335px] xl:w-[360px] bg-white shadow-lg overflow-hidden">
         <div className="w-full p-2">
           <a href={data.profileUrl} target="_blank" title={data.name} className="block w-full h-[250px] max-h-[250px] bg-slate-600 mb-2 border overflow-hidden hover:border-4">
             <img
