@@ -30,9 +30,9 @@ function AdminPage() {
       if (!querySnap.empty) {
         querySnap.forEach((doc) => {
           listDoc.push({ id: doc.id, data: doc.data() });
-          setDone(true)
-          setData(listDoc); //o estado deve ser actualizado dentro da funcao async, se colocar esse trecho fora, ele vai actualizar o estado primeiro antes de rodar a funcao - problema do assincronismo
         });
+        setDone(true)
+        setData(listDoc); //o estado deve ser actualizado dentro da funcao async, se colocar esse trecho fora, ele vai actualizar o estado primeiro antes de rodar a funcao - problema do assincronismo
       }
     }
     fetchData();

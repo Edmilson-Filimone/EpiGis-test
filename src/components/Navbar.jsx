@@ -15,7 +15,7 @@ function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li className={`py-2 border-b-2 hover:text-orange-300 ${localPath("/portfolio") ? "border-blue-200" : "border-transparent"}`}>
-          <Link to="/portfolio">Portfolio</Link>
+          <Link to="/portfolio">Open Maps</Link>
         </li>
         <li className={`py-2 border-b-2 hover:text-orange-300 ${localPath("/about") ? "border-blue-200" : "border-transparent"}`}>
           <Link to="/about">About</Link>

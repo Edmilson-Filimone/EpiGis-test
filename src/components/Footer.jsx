@@ -18,7 +18,7 @@ function Footer() {
 
 
   return (
-    <div className='relative w-full min-h-[80px] px-16 pt-8 bg-[#004274]'>
+    <div className='relative bottom-0 w-full min-h-[80px] px-16 pt-8 bg-[#004274]'>
       {home('/') && 
       (<div className='w-full'>
         <div>
