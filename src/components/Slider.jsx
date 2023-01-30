@@ -37,8 +37,6 @@ function Slider({ data }) {
                   style={{
                     background: `url(${image.data.profileUrl}) no-repeat center`,
                     backgroundSize:'cover',
-                    backgroundAttachment:'fixed',
-                    backgroundPositionY:'-150px'
                   }}>
                 </div>
                 <div className="absolute top-6 right-0 bg-slate-600 text-white font-semibold shadow-xl  py-1 px-3">
