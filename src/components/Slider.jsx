@@ -13,9 +13,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 function Slider({ data }) {
-  //SwiperCore.use(Autoplay, Navigation, Pagination, EffectFade);
-  console.log(data);
-
   return (
     <>
       <Swiper
