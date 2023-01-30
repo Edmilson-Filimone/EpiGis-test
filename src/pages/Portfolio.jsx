@@ -5,6 +5,7 @@ import Slider from "../components/Slider.jsx";
 import { FaChartBar, FaLeaf, FaPeopleCarry} from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading"
 
 function Portfolio() {
   const [content, setContent] = useState([]);
@@ -31,11 +32,11 @@ function Portfolio() {
 
   return (
     <>
-      {done && <Slider data={content} />}
-      <div className="w-full h-[30px] bg-slate-100"></div>
-      <section className="pt-10 pb-20 px-16 bg-white">
+      {done? <Slider data={content} /> : <Loading/>}
+      <div className="w-full h-[0px] bg-slate-200 shadow-4xl"></div>
+      <section className="pt-10 pb-20 px-16 bg-white mx-auto">
         <h3 className="text-3xl font-semibold text-center py-8 card-font-h3">Categories</h3>
-      <section className="flex flex-col space-y-5">
+      <section className="flex flex-col space-y-5 items-center">
         <article className="flex space-x-2 cursor-pointer transition ease-in-out duration-150 hover:scale-105" onClick={()=> navigate('demography')}>
           <div className="w-[100px] h-[100px] border text-center text-4xl py-8 px-8 shadow-lg text-white bg-orange-400"><HiUserGroup/></div>
           <div className="shadow-lg bg-slate-200 py-2 px-2 border-r-orange-400 border-r-4">

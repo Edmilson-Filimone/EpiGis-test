@@ -14,3 +14,13 @@ body{
 .card-font-h3{
     font-family: 'Roboto Slab';
 }
+
+span.swiper-pagination-bullet{
+    padding: 8px;
+}
+
+div.swiper-pagination{
+    position: relative !important;
+    bottom: -5px !important;
+    padding: 5px;
+}

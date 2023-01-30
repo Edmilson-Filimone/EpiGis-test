@@ -1,11 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import {
-  EffectFade,
-  Autoplay,
-  Navigation,
-  Pagination,
-} from "swiper";
+import { EffectFade, Autoplay, Navigation, Pagination } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -32,22 +27,22 @@ function Slider({ data }) {
         {data.map((image) => (
           <SwiperSlide className="w-full bg-white" key={image.id}>
             <div className="relative h-[400px]">
-                <div
-                  className="w-full h-full"
-                  style={{
-                    background: `url(${image.data.profileUrl}) no-repeat center`,
-                    backgroundSize:'cover',
-                  }}>
-                </div>
-                <div className="absolute top-6 right-0 bg-slate-600 text-white font-semibold shadow-xl  py-1 px-3">
-                    {`${image.data.name} `}
-                </div>
-                <div className="absolute top-20 right-0 bg-red-400 text-white font-semibold shadow-xl  py-1 px-3">
-                    {`${image.data.category} `}
-                </div>
+              <div
+                style={{
+                  background: `url(${image.data.profileUrl}) no-repeat center`,
+                  backgroundSize:'contain'
+                }}
+                className="w-full h-full md:bg-cover"
+              ></div>
+              <div className="absolute top-6 right-0 bg-slate-600 text-white font-semibold shadow-xl  py-1 px-3">
+                {`${image.data.name} `}
+              </div>
+              <div className="absolute top-20 right-0 bg-red-400 text-white font-semibold shadow-xl  py-1 px-3">
+                {`${image.data.category} `}
+              </div>
             </div>
-          </SwiperSlide>
-        ))}
+          </SwiperSlide>)
+          )}
       </Swiper>
     </>
   );
