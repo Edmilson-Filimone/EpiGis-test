@@ -29,28 +29,28 @@ function Footer() {
       {home(['/', '/about']) && 
       (<div className='w-full'>
         <div>
-          <h2 className='text-center text-4xl text-white card-font-h3'>Get in Touch</h2>
+          <h2 className='text-center text-3xl md:text-4xl text-white card-font-h3'>Get in Touch</h2>
           <p className='text-center text-sm text-white'>Feel free to drop us a line to contact us</p>
         </div>
         <div className='flex flex-col-reverse md:flex-row md:space-x-48'>
           <div className='text-white my-32 md:w-[600px]'>
-            <h3 className='text-3xl font-semibold card-font-h3'>Feel Free To Contact</h3>
+            <h3 className='text-2xl md:text-3xl font-semibold card-font-h3'>Feel Free To Contact</h3>
             <p className='py-2'>Lorem, ipsum dolor sit amet Nisi possimus eos qui voluptate quia recusandae rerum rem ad tenetur cumque, non debitis quod distinctio fuga?</p>
-            <ul className='py-2'>
-              <li className='flex items-center space-x-4 pb-5'>
-                <BsMap className='bg-black w-10 h-10 py-3'/>
+            <ul className='py-2 text-sm md:text-base'>
+              <li className='footer-item'>
+                <BsMap className='footer-icon'/>
                 <address className='not-italic'>São Dâmaso, Matola, Mozambique</address>
               </li>
-              <li className='flex items-center space-x-4 pb-5'>
-                <TbPhoneCall className='bg-black w-10 h-10 py-3'/>
+              <li className='footer-item'>
+                <TbPhoneCall className='footer-icon'/>
                 <span>+258 846 795 894</span>
               </li>
-              <li className='flex items-center space-x-4 pb-5'>
-                <BsEnvelope className='bg-black w-10 h-10 py-3'/>
+              <li className='footer-item'>
+                <BsEnvelope className='footer-icon'/>
                 <span>philimone99@gmail.com</span>
               </li>
-              <li className='flex items-center space-x-4 pb-5'>
-                <IoMdGlobe className='bg-black w-10 h-10 py-3'/>
+              <li className='footer-item'>
+                <IoMdGlobe className='footer-icon'/>
                 <a href='https://edmilson-filimone.github.io/my_profile' target='_blank' title='Author profile'>https://edmilson-filimone.github.io</a>
               </li>
             </ul>

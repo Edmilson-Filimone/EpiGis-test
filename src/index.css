@@ -24,3 +24,16 @@ div.swiper-pagination{
     bottom: -5px !important;
     padding: 5px;
 }
+
+.about-images{
+    @apply absolute w-[150px] h-[150px] bg-slate-50 rounded-md
+}
+
+.footer-item{
+    @apply flex items-center space-x-4 pb-5;
+
+}
+
+.footer-icon{
+    @apply bg-black w-8 h-8 p-2 md:w-10 md:h-10 md:py-3 shrink-0
+}

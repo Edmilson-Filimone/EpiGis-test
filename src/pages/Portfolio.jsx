@@ -6,7 +6,7 @@ import { FaChartBar, FaLeaf, FaPeopleCarry} from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading"
-import portfolio from "/public/Js/contents.js";
+import {portfolio} from "/public/Js/contents.js";
 
 function Portfolio() {
   const [content, setContent] = useState([]);
