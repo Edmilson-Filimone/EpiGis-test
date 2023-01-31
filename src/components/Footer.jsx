@@ -13,13 +13,20 @@ function Footer() {
 
   const location = useLocation()
   const home = (path)=>{
-    return location.pathname === path
+    let test = false;
+    if(location.pathname === path[0]){
+      test = true;
+    }
+    if(location.pathname === path[1]){
+      test = true;
+    }
+    return test
   }
 
 
   return (
     <div className='relative bottom-0 w-full min-h-[80px] px-16 pt-8 bg-[#004274]'>
-      {home('/') && 
+      {home(['/', '/about']) && 
       (<div className='w-full'>
         <div>
           <h2 className='text-center text-4xl text-white card-font-h3'>Get in Touch</h2>
