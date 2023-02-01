@@ -22,11 +22,11 @@ const portfolio = {
 const about = {
   first_paragraph: {
     label: "EpiGis",
-    data: "Welcome to EpiGis! this is a initiative that is being developed aiming to share valuable information regarded to epidemiology, environment, demography and humanitarian affairs of Mozambique for all kind of people in a way that all can understand.",
+    data: "Welcome to EpiGis! this is an initiative that is being developed aiming to share valuable information regarded to epidemiology, environment, demography and humanitarian affairs of Mozambique, for all kind of people in a way that all can understand.",
   },
   second_paragraph: {
     label: "What we do ?",
-    data: "We walk through all open data portal seeking for valuable resources like thirsty man looking for water :) in our case is just data. Whenever we find it, we careful clean, process, analysis and finally we build visualizations, especially maps to share the results with all.",
+    data: "We walk through all open data portals seeking for valuable resources like a thirsty man looking for water :) in our case is just data. Whenever we find it, we carefully clean, process, analyse and finally we build visualizations, especially maps to share the results with all.",
   },
   third_paragraph: {
     label: "Did you saw something interesting?",

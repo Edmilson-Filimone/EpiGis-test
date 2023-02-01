@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import CardListing from "../components/CardListing";
 import { collection, getDocs, limit, orderBy, query, where} from "firebase/firestore";
 import Loading from "../components/Loading";
-import tree_empty from "../assets/tree_empty.png"
+import NotFound from "../components/NotFound";
 
 
 function CategoryListing() {
@@ -44,14 +44,7 @@ function CategoryListing() {
 
   //return a notification that theire's no data available
   if(noData){
-    return (
-    <div className="flex flex-col items-center py-16 w-screen h-[80vh]">
-        <div className="text-center font-light">It's seems that there is no map for {params.category.toLowerCase()} category</div>
-        <div>
-            <img src={tree_empty} alt="no map :(" className="max-w-[300px] max-h-[300px] p-10"/>
-        </div>
-    </div>
-    )
+    return (<NotFound label={params.category}/>)
   }
 
   return (

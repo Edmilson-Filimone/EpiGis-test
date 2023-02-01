@@ -6,8 +6,10 @@ import { EffectFade, Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { useNavigate } from "react-router-dom";
 
 function Slider({ data }) {
+  const navigate = useNavigate();
   return (
     <>
       <Swiper
@@ -26,7 +28,7 @@ function Slider({ data }) {
       >
         {data.map((image) => (
           <SwiperSlide className="w-full bg-white" key={image.id}>
-            <div className="relative h-[400px]">
+            <div className="relative h-[400px]" onClick={()=>navigate(`/listing/${image.id}`)}>
               <div
                 style={{
                   background: `url(${image.data.profileUrl}) no-repeat center`,

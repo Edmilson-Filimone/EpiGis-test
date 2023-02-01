@@ -32,7 +32,7 @@ function Footer() {
           <h2 className='text-center text-3xl md:text-4xl text-white card-font-h3'>Get in Touch</h2>
           <p className='text-center text-sm text-white'>Feel free to drop us a line to contact us</p>
         </div>
-        <div className='flex flex-col-reverse md:flex-row md:space-x-48'>
+        <div className='flex flex-col-reverse items-center md:flex-row md:space-x-48 justify-center'>
           <div className='text-white my-32 md:w-[600px]'>
             <h3 className='text-2xl md:text-3xl font-semibold card-font-h3'>Feel Free To Contact</h3>
             <p className='py-2'>Lorem, ipsum dolor sit amet Nisi possimus eos qui voluptate quia recusandae rerum rem ad tenetur cumque, non debitis quod distinctio fuga?</p>
