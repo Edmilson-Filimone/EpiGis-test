@@ -49,7 +49,7 @@ function CategoryListing() {
 
   return (
     <div className="w-full mt-5 mb-10">
-      <h3 className="text-2xl text-center my-8 mx-auto font-semibold capitalize">
+      <h3 className="text-2xl text-center my-8 mx-auto font-semibold capitalize card-font-h3">
         {params.category}
       </h3>
       <div className="w-full mx-auto mt-5 lg:px-10 px-5 text-center flex flex-col items-center md:flex-row md:flex-wrap justify-center gap-5">

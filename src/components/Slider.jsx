@@ -36,10 +36,10 @@ function Slider({ data }) {
                 }}
                 className="w-full h-full md:bg-cover"
               ></div>
-              <div className="absolute top-6 right-0 bg-slate-600 text-white font-semibold shadow-xl  py-1 px-3">
+              <div className="absolute top-6 right-0 bg-slate-600 text-sm md:text-base text-white font-semibold max-w-[300px] md:max-w-[420px] truncate shadow-xl  py-1 px-3">
                 {`${image.data.name} `}
               </div>
-              <div className="absolute top-20 right-0 bg-red-400 text-white font-semibold shadow-xl  py-1 px-3">
+              <div className="absolute top-16 right-0 bg-red-400 text-sm md:text-base text-white font-semibold shadow-xl  py-1 px-3">
                 {`${image.data.category} `}
               </div>
             </div>
