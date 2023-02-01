@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Navbar() {
-  /**Getting the actual pathname for condtionally style the navebar*/
+  /**Getting the actual pathname for condtionally style the navebar 
+   * this function target all routes that begin with the same path, ex: /about, about/us */
   const localPath = (path) => {
     const location = useLocation();
-    return location.pathname == path;
+    const targetPath = location.pathname.split('/')[1] //getting only the first path, position 0 is empty
+    return targetPath == path.replace('/', '');
   };
   return (
     <>

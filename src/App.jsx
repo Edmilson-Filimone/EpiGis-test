@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./pages/About";
 import AdminPage from "./pages/AdminPage";
+import CategoryListing from "./pages/CategoryListing";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Home from "./pages/Home";
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/portfolio" element={<Portfolio />}></Route>
+          <Route path="/portfolio/:category" element={<CategoryListing />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/sign-in" element={<SignIn />}></Route>
           <Route path="/listing/:id" element={<Listing />}></Route>
