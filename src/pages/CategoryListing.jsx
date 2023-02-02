@@ -20,16 +20,32 @@ function CategoryListing() {
     let listDoc = [];
     async function fetchData() {
       const collectionRef = collection(firestore, "maps");
-      const q = query(collectionRef, where("category", "==", params.category), orderBy("timeStamp", "asc"), limit(queryLimit))
+      //query for category - in normal conditions we would use "OR" condition but firebase does not suport
+      const q = query(collectionRef, where("category", "==", params.category), orderBy("timeStamp", "desc"), limit(queryLimit))
       const querySnap = await getDocs(q);
+      //query for keyword
+      const _q_ = query(collectionRef, where("keyword", "==", params.category), orderBy("timeStamp", "desc"), limit(queryLimit))
+      const _querySnap_ = await getDocs(_q_);
+      
+      //query for category
       if (!querySnap.empty) {
         querySnap.forEach((doc) => {
           listDoc.push({ id: doc.id, data: doc.data() });
         });
         setDone(true)
-        setData(listDoc); //o estado deve ser actualizado dentro da funcao async, se colocar esse trecho fora, ele vai actualizar o estado primeiro antes de rodar a funcao - problema do assincronismo
+        setData(listDoc);
       }
-      if(querySnap.empty){
+
+      //query for keyword
+      if (!_querySnap_.empty) {
+        _querySnap_.forEach((doc) => {
+          listDoc.push({ id: doc.id, data: doc.data() });
+        });
+        setDone(true)
+        setData(listDoc); 
+      }
+
+      if(querySnap.empty && _querySnap_.empty){
         setDone(true)
         setNoData(true)
       }
