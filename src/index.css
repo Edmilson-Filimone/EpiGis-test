@@ -32,7 +32,11 @@ div.swiper-pagination{
 }
 
 .hero-h2{
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4)
+    text-shadow: 4px 4px 10px black
+}
+
+.hero-p {
+    text-shadow: 2px 2px 2px black 
 }
 
 .about-images{

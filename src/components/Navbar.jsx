@@ -11,7 +11,7 @@ function Navbar() {
     return targetPath == path.replace('/', '');
   };
   return (
-    <>
+    <nav className="z-50">
       <ul className="w-full flex justify-center space-x-8 list-none py-5 bg-navbar font-['Montserrat'] font-medium text-sm text-center text-white uppercase">
         <li className={`py-2 border-b-2 hover:text-orange-300 ${localPath("/") ? "border-blue-200" : "border-transparent"}`}>
           <Link to="/">Home</Link>
@@ -23,7 +23,7 @@ function Navbar() {
           <Link to="/about">About</Link>
         </li>
       </ul>
-    </>
+    </nav>
   );
 }
 

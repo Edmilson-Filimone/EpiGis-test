@@ -15,10 +15,10 @@ function Home() {
     <main>
       <section className='hero flex flex-col items-center w-screen h-screen'>
         <section className='mt-16 md:mt-28 py-6 px-4 hover:bg-white hover:bg-opacity-10 hover:shadow-lg transition duration-150 ease-in'>
-          <article className='mb-6'>
-            <h2 className='hero-h2 pb-4 text-7xl text-center font-bold text-white '><span className='text-blue-400'>Epi</span>Gis</h2>
-            <p className='text-lg text-center font-medium text-white hero-h2'>Collect, analyse and inform Mozambique's indexes</p>
-            <p className='text-lg text-center font-semibold text-white hero-h2'>Search for maps</p>
+          <article className='mb-2'>
+            <h2 className='hero-h2 pb-4 text-7xl text-center font-bold text-white'><span className='text-blue-400'>Epi</span>Gis</h2>
+            <p className='text-2xl text-center font-medium text-white mb-4 hero-p'>Collect, analyse and inform Mozambique's indexes</p>
+            <p className='text-lg text-center font-semibold text-white hero-p'>Search for maps</p>
           </article>
           <form className='flex flex-col items-center w-full space-y-3 px-4' onSubmit={()=>navigate(`portfolio/${search}`)}>
             <input className='w-full md:w-[600px] bg-transparent border border-white text-black text-center focus:bg-slate-100 focus:border-white' type="text"  placeholder='Ex: Malaria' value={search} onChange={onChange}/>
