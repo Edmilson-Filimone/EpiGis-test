@@ -25,6 +25,16 @@ div.swiper-pagination{
     padding: 5px;
 }
 
+.hero{
+    background: url('../src/assets/hero.jpg') center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.hero-h2{
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4)
+}
+
 .about-images{
     @apply absolute w-[150px] h-[150px] bg-slate-50 rounded-md
 }
