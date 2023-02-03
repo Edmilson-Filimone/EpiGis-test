@@ -39,8 +39,24 @@ div.swiper-pagination{
     text-shadow: 2px 2px 2px black 
 }
 
+.card-category{
+    @apply flex flex-col items-center w-[274px] h-[264px] shadow-lg bg-white p-8;
+    color: rgb(32, 32, 32)
+}
+
+.card-category-icon{
+    @apply w-12 h-12 font-thin mb-4 shrink-0;
+}
+.card-category-title{
+    @apply text-xl card-font-h3 font-semibold tracking-widest py-4;
+}
+
+.card-category-p{
+    @apply font-thin text-center text-[14px];
+}
+
 .about-images{
-    @apply absolute w-[150px] h-[150px] bg-slate-50 rounded-md
+    @apply absolute w-[150px] h-[150px] bg-slate-50 rounded-md;
 }
 
 .footer-item{

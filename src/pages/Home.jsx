@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading'
-import {FaSearch} from "react-icons/fa"
+import Navbar from '../components/Navbar'
+import {FaChartArea, FaChartBar, FaLeaf, FaPeopleCarry, FaSearch} from "react-icons/fa"
+import { HiOutlineUserGroup, HiUserGroup } from 'react-icons/hi'
+import Categories from '../components/Categories'
 
 function Home() {
   const navigate = useNavigate()
@@ -29,7 +32,7 @@ function Home() {
           </form>
         </section>
       </section>
-      <section className='category'></section>
+      <Categories/>
       <section className='metrics'></section>
       <section className='portfolio'></section>
     </main>
