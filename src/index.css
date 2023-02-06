@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,6 +58,28 @@ div.swiper-pagination{
 
 .about-images{
     @apply absolute w-[150px] h-[150px] bg-slate-50 rounded-md;
+}
+
+.metrics-container{
+    background: url('../src/assets/metrics.jpg') center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.metrics{
+    @apply flex flex-col flex-nowrap items-center gap-4;
+}
+
+.metrics-icon{
+    @apply w-8 h-8;
+}
+
+.metrics-value{
+    font-family: 'Righteous', cursive;
+    @apply text-5xl font-bold;
+}
+
+.metrics-label{
+@apply uppercase tracking-widest
 }
 
 .footer-item{
