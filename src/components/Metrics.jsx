@@ -10,27 +10,27 @@ function Metrics({data}) {
           <ul className='grid gap-16 md:gap-0 md:grid-cols-2 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-5 mx-auto'>
             <li className='metrics'>
               <MapIcon className='metrics-icon'/>
-              <span className='metrics-value'>{data.demography + data.environment + data.epidemiology + data.humanitarian}</span>
+              <span className='metrics-value'>{data.Demography + data.Environment + data.Epidemiology + data.Humanitarian}</span>
               <span className='metrics-label'>Total Maps</span>
             </li>
             <li className='metrics'>
               <UserGroupIcon className='metrics-icon'/>
-              <span className='metrics-value'>{data.demography}</span>
+              <span className='metrics-value'>{data.Demography}</span>
               <span className='metrics-label'>Demography</span>
             </li>
             <li className='metrics md:col-span-2 lg:col-auto'>
               <SunIcon className='metrics-icon'/>
-              <span className='metrics-value'>{data.environment}</span>
+              <span className='metrics-value'>{data.Environment}</span>
               <span className='metrics-label'>Environment</span>
             </li>
             <li className='metrics'>
               <ChartBarIcon className='metrics-icon'/>
-              <span className='metrics-value'>{data.epidemiology}</span>
+              <span className='metrics-value'>{data.Epidemiology}</span>
               <span className='metrics-label'>Epidemiology</span>
             </li>
             <li className='metrics'>
               <FireIcon className='metrics-icon'/>
-              <span className='metrics-value'>{data.humanitarian}</span>
+              <span className='metrics-value'>{data.Humanitarian}</span>
               <span className='metrics-label'>Humanitarian</span>
             </li>
           </ul>

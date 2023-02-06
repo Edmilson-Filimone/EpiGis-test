@@ -1,17 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading'
 import {FaSearch} from "react-icons/fa"
 import Categories from '../components/Categories'
 import Metrics from '../components/Metrics'
+import { collection, getDocs } from 'firebase/firestore'
+import { firestore } from '../firebase.config'
 
 function Home() {
   const navigate = useNavigate()
+  const [done, setDone] = useState(false)
   const [search, setSearch] = useState('')
+  const [data, setData] = useState({Humanitarian:'', Epidemiology:'', Demography:'', Environment:''})
 
   const onChange = (e)=>{
     setSearch(e.target.value)
   }
+
+  let allMetrics = {}
+  useEffect(()=>{
+    let docList = []
+    async function fetchData(){
+      const collectionRef = collection(firestore, 'maps')
+      const querySnap = await getDocs(collectionRef)
+      if(!querySnap.empty){
+        querySnap.forEach((doc)=>{docList.push(doc.data())})
+        for(let label in data){
+          let metric = docList.filter((doc)=> doc.category == label).length;
+          allMetrics[label] = metric
+        }
+        setDone(true)
+        setData(allMetrics)
+      }
+    }
+    fetchData()
+  },[])
   
   return (
     <main>
@@ -34,7 +57,7 @@ function Home() {
                 </section>
         </section>
       <Categories/>
-      <Metrics data={{demography:0, environment:1, epidemiology:4, humanitarian:2}}/>
+      {done && <Metrics data={data}/>}
       <section className='portfolio'></section>
     </main>
   )

@@ -28,7 +28,7 @@ function Slider({ data }) {
       >
         {data.map((image) => (
           <SwiperSlide className="w-full bg-white" key={image.id}>
-            <div className="relative h-[400px]" onClick={()=>navigate(`/listing/${image.id}`)}>
+            <div className="relative h-[400px] md:h-[85vh]" onClick={()=>navigate(`/listing/${image.id}`)}>
               <div
                 style={{
                   background: `url(${image.data.profileUrl}) no-repeat center`,
