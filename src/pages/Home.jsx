@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading'
-import {FaSearch} from "react-icons/fa"
+import { FaSearch } from "react-icons/fa"
 import Categories from '../components/Categories'
 import Metrics from '../components/Metrics'
 import { collection, getDocs } from 'firebase/firestore'
 import { firestore } from '../firebase.config'
+import CardListing from '../components/CardListing'
 
 function Home() {
   const navigate = useNavigate()
   const [done, setDone] = useState(false)
   const [search, setSearch] = useState('')
-  const [data, setData] = useState({Humanitarian:'', Epidemiology:'', Demography:'', Environment:''})
+  const [data, setData] = useState([])
+  const [metricData, setMetricData] = useState({ Humanitarian: 0, Epidemiology: 0, Demography: 0, Environment: 0 })
 
-  const onChange = (e)=>{
+  const onChange = (e) => {
     setSearch(e.target.value)
   }
 
   let allMetrics = {}
-  useEffect(()=>{
+  useEffect(() => {
     let docList = []
-    async function fetchData(){
+    async function fetchData() {
       const collectionRef = collection(firestore, 'maps')
       const querySnap = await getDocs(collectionRef)
-      if(!querySnap.empty){
-        querySnap.forEach((doc)=>{docList.push(doc.data())})
-        for(let label in data){
-          let metric = docList.filter((doc)=> doc.category == label).length;
+      if (!querySnap.empty) {
+        querySnap.forEach((doc) => {
+          docList.push({id:doc.id, data:doc.data()})}
+          )
+        for (let label in metricData) {
+          let metric = docList.filter((doc) => doc.data.category == label).length;
           allMetrics[label] = metric
         }
         setDone(true)
-        setData(allMetrics)
+        setMetricData(allMetrics)
+        setData(docList)
       }
     }
     fetchData()
-  },[])
-  
+  }, [])
+
   return (
     <main>
       <section className='hero flex flex-col items-center w-screen h-screen'>
@@ -46,19 +51,32 @@ function Home() {
               <p className='text-2xl text-center font-medium text-white mb-4 hero-p'>Collect, analyse and inform Mozambique's indexes</p>
               <p className='text-lg text-center font-semibold text-white hero-p'>Search for maps</p>
             </article>
-            <form className='flex flex-col items-center w-full space-y-3 px-4' onSubmit={()=>navigate(`portfolio/${search}`)}>
-              <input className='w-full md:w-[600px] bg-transparent border border-white text-black text-center focus:bg-slate-100 focus:border-white' type="text"  placeholder='Ex: Malaria' value={search} onChange={onChange}/>
+            <form className='flex flex-col items-center w-full space-y-3 px-4' onSubmit={() => navigate(`portfolio/${search}`)}>
+              <input className='w-full md:w-[600px] bg-transparent border border-white text-black text-center focus:bg-slate-100 focus:border-white' type="text" placeholder='Ex: Malaria' value={search} onChange={onChange} />
               <button className='flex gap-2 items-center py-2 px-6 bg-blue-400 text-sm text-white font-semibold shadow-lg transition ease-out duration-150 hover:bg-blue-500 ' type="submit">
-                <FaSearch/>
+                <FaSearch />
                 <span>Search</span>
               </button>
             </form>
           </section>
-                </section>
         </section>
-      <Categories/>
-      {done && <Metrics data={data}/>}
-      <section className='portfolio'></section>
+      </section>
+      <Categories />
+      <Metrics data={metricData} />
+      {!done && <Loading/>}
+      {done && 
+      (<section className='my-16'>
+        <article className='w-screen my-10'>
+          <h3 className="text-3xl text-center font-medium uppercase card-font-h3 px-4">Maps Gallery</h3>
+          <p className='text-center text-light py-1'>Featured maps on EpiGis Gallery</p>
+        </article>
+        <div className="w-fit mx-auto mt-5 px-4 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {data.slice(0,6).map(({id, data}) => (
+              <CardListing key={id} id={id} data={data}/>
+            ))}
+        </div>
+        <button className="block mt-10 mx-auto py-2 px-3 shadow-md rounded-md bg-blue-400 bg-gradient-to-bl text-white text-center font-medium transition ease-in-out duration-100 hover:bg-blue-500" onClick={() => navigate('/portfolio')}>See more</button>
+      </section>)}
     </main>
   )
 }
