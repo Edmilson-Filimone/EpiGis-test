@@ -54,7 +54,7 @@ function SignIn() {
 
   return (
     <>
-      <div className="w-full mt-10 py-8 px-4">
+      <div className="w-full h=[75vh] mt-10 py-8 px-4">
         <h3 className="text-center mx-auto text-2xl font-semibold">Sign In</h3>
         <form onSubmit={onSubmit} className="flex flex-col space-y-5 items-center max-w-[500px] w-full mx-auto py-5">
           <div className="w-full flex flex-col space-y-2 justify-start">
