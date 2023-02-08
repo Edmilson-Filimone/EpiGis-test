@@ -1,7 +1,7 @@
 import {ChartBarIcon, FireIcon, MapIcon, SunIcon, UserGroupIcon} from '@heroicons/react/24/outline'
 function Categories() {
   return (
-    <section className='category w-screen'>
+    <section className='category w-screen px-2.5'>
         <div className='hidden lg:block bg-navbar w-full h-6'></div>
         <section className='my-12'>
           <article className='w-full pb-10'>
