@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import {doc, getDoc} from 'firebase/firestore'
 import {firestore} from '../firebase.config'
 import Loading from '../components/Loading'
-
+import DOMPurify from 'dompurify'
 
 function Listing() {
   const param = useParams()
@@ -58,7 +58,7 @@ function Listing() {
             <img className='max-w-full' src={data.profileUrl} alt={data.name} title={data.name} />
           </div>
           <h4 className='text-xl font-semibold py-4'>Descrition</h4>
-          <div className='md:mb-10'>{data.description}</div>
+          <div className='md:mb-10' dangerouslySetInnerHTML={{_html:DOMPurify.sanitize(data.description)}}></div>
         </article>
         <article className='flex flex-col md:gap-20 px-4 pt-10'>
           {data.country.startsWith('Mo' || 'mo')? 
