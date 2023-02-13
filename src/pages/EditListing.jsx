@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
 function EditListing() {
+  window.scrollTo(0,0)
   const params = useParams();
   const navigate = useNavigate();
   const [updateImages, setUpdateImages] = useState(false);

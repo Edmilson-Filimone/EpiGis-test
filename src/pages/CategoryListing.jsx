@@ -8,6 +8,7 @@ import NotFound from "../components/NotFound";
 
 
 function CategoryListing() {
+  window.scrollTo(0,0)
   const params = useParams()
   const [data, setData] = useState(null);
   const [done, setDone] = useState(false)

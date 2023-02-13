@@ -9,6 +9,7 @@ import Loading from '../components/Loading'
 import DOMPurify from 'dompurify'
 
 function Listing() {
+  window.scrollTo(0,0)
   const param = useParams()
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState({})

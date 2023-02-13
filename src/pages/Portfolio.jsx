@@ -9,6 +9,7 @@ import Loading from "../components/Loading"
 import {portfolio} from "/public/Js/contents.js";
 
 function Portfolio() {
+  window.scrollTo(0,0)
   const [content, setContent] = useState([]);
   const [done, setDone] = useState(false);
   const navigate = useNavigate()
